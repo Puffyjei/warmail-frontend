@@ -1,4 +1,3 @@
-
 import { useState } from 'react'
 
 function App() {
@@ -21,8 +20,7 @@ function App() {
     })
     const data = await res.json()
     alert(data.message || data.error)
-    if (data.email) {
-      setEmail(data.email)
+    if (!data.error) {
       setPage('login')
     }
   }
@@ -55,31 +53,85 @@ function App() {
       {page === 'register' && (
         <div>
           <h1 className="text-2xl mb-2">Registrarse</h1>
-          <input placeholder="Usuario" value={email} onChange={e => setEmail(e.target.value)} className="border p-2 mr-2"/>
-          <input type="password" placeholder="Contraseña" value={password} onChange={e => setPassword(e.target.value)} className="border p-2 mr-2"/>
-          <button onClick={handleRegister} className="bg-blue-500 text-white p-2">Registrar</button>
-          <p className="mt-2 cursor-pointer text-sm underline" onClick={() => setPage('login')}>¿Ya tienes cuenta?</p>
+          <input
+            placeholder="Correo (ej: ejemplo@warmail)"
+            value={email}
+            onChange={e => setEmail(e.target.value)}
+            className="border p-2 mr-2"
+          />
+          <input
+            type="password"
+            placeholder="Contraseña"
+            value={password}
+            onChange={e => setPassword(e.target.value)}
+            className="border p-2 mr-2"
+          />
+          <button
+            onClick={handleRegister}
+            className="bg-blue-500 text-white p-2"
+          >
+            Registrar
+          </button>
+          <p
+            className="mt-2 cursor-pointer text-sm underline"
+            onClick={() => setPage('login')}
+          >
+            ¿Ya tienes cuenta?
+          </p>
         </div>
       )}
       {page === 'login' && (
         <div>
           <h1 className="text-2xl mb-2">Iniciar sesión</h1>
-          <input placeholder="Correo" value={email} onChange={e => setEmail(e.target.value)} className="border p-2 mr-2"/>
-          <input type="password" placeholder="Contraseña" value={password} onChange={e => setPassword(e.target.value)} className="border p-2 mr-2"/>
-          <button onClick={handleLogin} className="bg-green-500 text-white p-2">Entrar</button>
+          <input
+            placeholder="Correo"
+            value={email}
+            onChange={e => setEmail(e.target.value)}
+            className="border p-2 mr-2"
+          />
+          <input
+            type="password"
+            placeholder="Contraseña"
+            value={password}
+            onChange={e => setPassword(e.target.value)}
+            className="border p-2 mr-2"
+          />
+          <button
+            onClick={handleLogin}
+            className="bg-green-500 text-white p-2"
+          >
+            Entrar
+          </button>
         </div>
       )}
       {page === 'inbox' && (
         <div>
           <h1 className="text-xl mb-4">Bandeja de entrada de {loggedEmail}</h1>
           <div className="mb-4">
-            <input placeholder="Para" value={to} onChange={e => setTo(e.target.value)} className="border p-2 mr-2"/>
-            <input placeholder="Mensaje" value={message} onChange={e => setMessage(e.target.value)} className="border p-2 mr-2"/>
-            <button onClick={handleSend} className="bg-purple-500 text-white p-2">Enviar</button>
+            <input
+              placeholder="Para"
+              value={to}
+              onChange={e => setTo(e.target.value)}
+              className="border p-2 mr-2"
+            />
+            <input
+              placeholder="Mensaje"
+              value={message}
+              onChange={e => setMessage(e.target.value)}
+              className="border p-2 mr-2"
+            />
+            <button
+              onClick={handleSend}
+              className="bg-purple-500 text-white p-2"
+            >
+              Enviar
+            </button>
           </div>
           <ul>
             {inbox.map((msg, i) => (
-              <li key={i} className="border-b py-1"><b>{msg.from}</b>: {msg.message}</li>
+              <li key={i} className="border-b py-1">
+                <b>{msg.from}</b>: {msg.message}
+              </li>
             ))}
           </ul>
         </div>
