@@ -1,4 +1,3 @@
-
 {
   "name": "warmail-frontend",
   "version": "1.0.0",
@@ -9,6 +8,7 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "vite": "^4.0.0"
+    "vite": "^4.0.0",
+    "@vitejs/plugin-react": "^4.0.0"
   }
 }
